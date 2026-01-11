@@ -8,6 +8,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\IntroductionController;
+use App\Http\Controllers\CartController;
 
 
 Route::get('/PRoduct/index', [PRoductController::class, "index"]);
@@ -24,7 +25,7 @@ Route::get('/test', [TestController::class, 'enter']);
 
 Route::post('/logout', [LogoutController::class, 'out'])->name('logout');
 
-
+Route::get('/cart', [CartController::class, 'pay']);
 
 
 Route::get('/register', [RegisterController::class, 'index']);

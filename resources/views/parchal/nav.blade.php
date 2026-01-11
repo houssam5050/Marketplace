@@ -96,7 +96,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
+    <div class="container">
 
         <a class="navbar-brand" href="/PRoduct/index">MarketPlace</a>
 

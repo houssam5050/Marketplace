@@ -111,6 +111,22 @@
 </head>
 <body>
     <div class="product-box">
+                @foreach ($item as $i)
+        @php
+        $img  = "";
+
+                        if (!empty($i->image)) {
+                            
+                                $img = 'http://localhost/tp_company/uploads/'. $i->image;
+                        } else {
+                            $img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAACUCAMAAADyHdbUAAAAMFBMVEXp7vG6vsHs8fTa3+LEyMvIzdC+wsXU2Nvg5Oe2ur3m6+7BxcjN0tXj6OvY3N/Q1dhM7LVEAAACOUlEQVR4nO3a6XLCIBQFYLiQBQL6/m/bkLhgTMxC7b2Znu9Hx9oyc04WFEUpAAAAAAAAAAAAAAAAAAAAAPhXqAB39qQ1x7WKuwK1VVcXsJG3AUVdxtUtawNfmL/Xecb8dHUl2evhZ8N4CsimGM3he7jpK7iKL/9YoPLHZ9FxPGODwgCnL1A8vlgegJSPcWcYUQViqJ3T1hwdzyILYOphSnUu+O3zoqAC5jm9hyPjmTwCeJu9pJnNp0BMATJZfrc9kpgC6uU9RRfn/redeVZOgbBWgC5zSeUUWDsDlG5y+xZVToGVe4DGScpO7245BWKXnYG3N8j99XM7N7QwnssjwCPiXKLsj5Pli5wCSjXa3S6g6TI3L6dtXBjPIwtApkrvhbrr9J3ES/5JA0kFFPnWmPbtUwYy+lU+F4kqkD7hev+YZ3L8k5oWxjNYDTCTv2+wffy3rQaYy5/NRSIL+Ofvs8c/v5MlFvC2uT9czP9oILFAvzC4jI+oWcx/v4oEFkjP6GFd/OH46/R6R7Pj/9g0gLdjunQOPh1/qQVidY93+Xj9SC3gq2fAUJ+wgP2cWXyBbi207AJ+V355BeKe60dggb35xRXY/V2TtAIBBVAABU5dwAe9c5OEllWgX0fu9jKevQDT+GJn/6J7CGBPvNWAhhVMaI4K7Js9VtaNm3But1G0snDcwDLGV7+wZavj3jTnQ8mmP1vt2JfwrQqxPY758N8cn0VFxAcAAAAAAAAAAAAAAAAAAACAP/MDnvMh4ZvR/VEAAAAASUVORK5CYII=';
+                            
+                        }
+                        
+                        
+        @endphp
+        @endforeach
+
         <img id="mainImage" src="{{ asset('uploads/' . $item->image) }}" alt="{{ $item->name }}" class="product-image" />
 
         <div class="thumbs">

@@ -6,7 +6,6 @@
     <title>MarketPlace</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        /* Navbar Styles */
         .navbar {
             background-color: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -109,7 +108,6 @@
             background-color: #184ac9;
         }
 
-        /* Responsive tweaks */
         @media(max-width: 576px) {
             .form-control.search-input {
                 max-width: 100%;
@@ -120,7 +118,6 @@
             }
         }
 
-        /* Card Styles */
         .card {
             border: none;
             border-radius: 16px;
@@ -293,10 +290,21 @@
     <h3 class="section-title">Products</h3>
     <div class="row g-3">
         @foreach ($products as $p)
+        @php
+        $img  = "";
+        
+                        if (!empty($p->image)) {
+                            
+                                $img = 'http://localhost/tp_company/uploads/'. $p->image;
+                        } else {
+                            $img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAACUCAMAAADyHdbUAAAAMFBMVEXp7vG6vsHs8fTa3+LEyMvIzdC+wsXU2Nvg5Oe2ur3m6+7BxcjN0tXj6OvY3N/Q1dhM7LVEAAACOUlEQVR4nO3a6XLCIBQFYLiQBQL6/m/bkLhgTMxC7b2Znu9Hx9oyc04WFEUpAAAAAAAAAAAAAAAAAAAAAPhXqAB39qQ1x7WKuwK1VVcXsJG3AUVdxtUtawNfmL/Xecb8dHUl2evhZ8N4CsimGM3he7jpK7iKL/9YoPLHZ9FxPGODwgCnL1A8vlgegJSPcWcYUQViqJ3T1hwdzyILYOphSnUu+O3zoqAC5jm9hyPjmTwCeJu9pJnNp0BMATJZfrc9kpgC6uU9RRfn/redeVZOgbBWgC5zSeUUWDsDlG5y+xZVToGVe4DGScpO7245BWKXnYG3N8j99XM7N7QwnssjwCPiXKLsj5Pli5wCSjXa3S6g6TI3L6dtXBjPIwtApkrvhbrr9J3ES/5JA0kFFPnWmPbtUwYy+lU+F4kqkD7hev+YZ3L8k5oWxjNYDTCTv2+wffy3rQaYy5/NRSIL+Ofvs8c/v5MlFvC2uT9czP9oILFAvzC4jI+oWcx/v4oEFkjP6GFd/OH46/R6R7Pj/9g0gLdjunQOPh1/qQVidY93+Xj9SC3gq2fAUJ+wgP2cWXyBbi207AJ+V355BeKe60dggb35xRXY/V2TtAIBBVAABU5dwAe9c5OEllWgX0fu9jKevQDT+GJn/6J7CGBPvNWAhhVMaI4K7Js9VtaNm3But1G0snDcwDLGV7+wZavj3jTnQ8mmP1vt2JfwrQqxPY758N8cn0VFxAcAAAAAAAAAAAAAAAAAAACAP/MDnvMh4ZvR/VEAAAAASUVORK5CYII=';
+                        }
+        
+         @endphp
             <div class="col-md-4 col-sm-6">
                 <div class="card h-100">
                     <a href="#" class="heart-btn {{ $favorits->contains('id', $p->id) ? 'favorited' : '' }}" data-id="{{ $p->id }}">&#9825;</a>
-                    <img src="{{ asset('uploads/' . $p->image) }}" class="card-img-top" alt="{{ $p->name }}">
+                    <img src="{{ $img}}" class="card-img-top" alt="{{ $p->name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $p->name }}</h5>
                         <p class="card-text">Short description</p>
@@ -310,7 +318,6 @@
         @endforeach
     </div>
 
-    <!-- Pagination -->
     <div class="mt-4 d-flex justify-content-center">
         {{ $products->links() }}
     </div>
