@@ -25,7 +25,14 @@ Route::get('/test', [TestController::class, 'enter']);
 
 Route::post('/logout', [LogoutController::class, 'out'])->name('logout');
 
-Route::get('/cart', [CartController::class, 'pay']);
+//cart
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::post('/cart/add/{id}', [CartController::class, 'add']);
+    Route::delete('/cart/remove/{id}', [CartController::class, 'remove']);
+});
+
+
 
 
 Route::get('/register', [RegisterController::class, 'index']);

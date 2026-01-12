@@ -9,10 +9,10 @@ class FavoriteController extends Controller
 {
     public function index()
     {
-        // Get all products with pagination
+        
         $products = DB::table('products')->paginate(9);
 
-        $favorits = collect(); // Initialize an empty collection
+        $favorits = collect(); 
 
         if (Auth::check()) {
             $favorits = DB::table('favorits')

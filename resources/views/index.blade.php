@@ -235,6 +235,13 @@
             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-1.12 2.174.188 4.992 3.108 6.357L8 15l3.492-5.59c2.92-1.366 4.228-4.183 3.108-6.357C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 1c2.21 0 4 1.79 4 4 0 1.157-.634 2.144-1.574 2.722L8 12 5.574 7.722A3.993 3.993 0 0 1 4 5c0-2.21 1.79-4 4-4z"/>
         </svg>
     </a>
+    <a href="/cart" class="nav-icons" title="Cart / Payment" aria-label="Cart">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2a5bd7" class="bi bi-cart" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5z"/>
+        <path d="M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+    </svg>
+</a>
+
 
     @guest
         <a href="{{ route('login') }}" class="btn btn-primary ms-3" style="border-radius: 20px; padding: 6px 18px; font-weight: 600;">
@@ -274,7 +281,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="card h-100">
                         <a href="#" class="heart-btn favorited" data-id="{{ $fav->id }}">&#9825;</a>
-                        <img src="{{ asset('uploads/' . $fav->image) }}" class="card-img-top" alt="{{ $fav->name }}">
+<img src="http://localhost/tp_company/uploads/{{ $fav->image }}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">{{ $fav->name }}</h5>
                             <p class="card-text">Short description</p>
@@ -309,7 +316,11 @@
                         <h5 class="card-title">{{ $p->name }}</h5>
                         <p class="card-text">Short description</p>
                         <div class="d-flex gap-2">
-                            <a href="#" class="btn btn-primary">Add</a>
+                            <form action="/cart/add/{{ $p->id }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Add</button>
+                                    </form>
+
                             <a href="/details/{{ $p->id }}" class="btn btn-primary">Show</a>
                         </div>
                     </div>
