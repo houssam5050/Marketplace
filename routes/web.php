@@ -11,7 +11,7 @@ use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\CartController;
 
 
-Route::get('/PRoduct/index', [PRoductController::class, "index"]);
+Route::get('/PRoduct/index', [PRoductController::class, "index"])->name('products.index');
 Route::get("/details/{id}", [PRoductController::class, "ProductId"]);
 
 

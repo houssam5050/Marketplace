@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,12 +218,22 @@
 <nav class="navbar navbar-expand-lg d-flex">
     <a class="navbar-brand" href="/PRoduct/index">MarketPlace</a>
 
-    <form class="position-relative ms-4 flex-grow-1" role="search">
-        <input type="search" class="form-control search-input" placeholder="Search products..." aria-label="Search" />
-        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85zm-5.242 1.398a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
-        </svg>
+    <form action="/PRoduct/index" method="GET" class="position-relative ms-4 flex-grow-1" role="search">
+
+
+    <input
+        type="search"
+        name="search"
+        class="form-control search-input"
+        placeholder="Search products..."
+        value="{{ request('search') }}"
+    />
+
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85zm-5.242 1.398a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+    </svg>
     </form>
+
 
     <a href="/introduction" class="nav-icons" title="Home" aria-label="Home">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2a5bd7" class="bi bi-house" viewBox="0 0 16 16">
@@ -257,6 +268,11 @@
         </form>
     @endauth
 </nav>
+@if($products->count() == 0)
+    <div class="alert alert-warning text-center w-100">
+        No products found for "<strong>{{ request('search') }}</strong>"
+    </div>
+@endif
 
 <div class="categories-bar container">
     <button class="category-btn active">All</button>
