@@ -17,7 +17,7 @@ class PRoductController extends Controller
             $query->where('name', 'LIKE', '%' . $request->search . '%');
         }
 
-        $products = $query->withQueryString()->paginate(6);
+        $products = $query->withQueryString()->paginate(9);
 
         return view("index", compact("products"));
     }
