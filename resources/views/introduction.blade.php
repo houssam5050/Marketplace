@@ -109,7 +109,7 @@
 <section class="py-5">
   <div class="container">
     <h3 class="fw-bold text-center mb-4">Featured Products</h3>
-
+<!-- ================== card -->
     <div class="row g-4">
       <div class="col-md-3">
         <div class="card product-card shadow-sm">

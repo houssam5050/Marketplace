@@ -322,33 +322,33 @@
         <h3 class="section-title">Products</h3>
         <div class="row g-3">
             @foreach ($products as $p)
-                @php
-                    $img = "";
-                    if (!empty($p->image)) {
-                        $img = 'http://localhost/tp_company/uploads/' . $p->image;
-                    } else {
-                        $img = 'data:image/png;base64,...'; // fallback image
-                    }
-                @endphp
-                <!-- Change col-md-4 to col-md-3 for 4 per row -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card h-100">
-                        <a href="#" class="heart-btn {{ $favorits->contains('id', $p->id) ? 'favorited' : '' }}"
-                            data-id="{{ $p->id }}">&#9825;</a>
-                        <img src="{{ $img}}" class="card-img-top" alt="{{ $p->name }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $p->name }}</h5>
-                            <p class="card-text">Short description</p>
-                            <div class="d-flex gap-2">
-                                <form action="/cart/add/{{ $p->id }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Add</button>
-                                </form>
-                                <a href="/details/{{ $p->id }}" class="btn btn-primary">Show</a>
+                            @php
+                                $img = "";
+                                if (!empty($p->image)) {
+                                    $img = 'http://localhost/tp_company/uploads/' . $p->image;
+                                } else {
+                                    $img = 'data:image/png;base64,...'; 
+                                }
+                            @endphp
+
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card h-100">
+                                    <a href="#" class="heart-btn {{ $favorits->contains('id', $p->id) ? 'favorited' : '' }}"
+                                        data-id="{{ $p->id }}">&#9825;</a>
+                                    <img src="{{ $img}}" class="card-img-top" alt="{{ $p->name }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $p->name }}</h5>
+                                        <p class="card-text">Short description that's make product very nice and make the costumer want to buy it</p>
+                                        <div class="d-flex gap-2">
+                                            <form action="/cart/add/{{ $p->id }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </form>
+                                            <a href="/details/{{ $p->id }}" class="btn btn-primary">Show</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
             @endforeach
         </div>
 
