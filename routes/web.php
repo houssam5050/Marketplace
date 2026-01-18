@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\IntroductionController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 
 Route::get('/PRoduct/index', [PRoductController::class, "index"])->name('products.index');
@@ -32,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove']);
 });
 
+Route::get('/order/{id}', [OrderController::class, 'store'])
+    ->middleware('auth');
 
 
 

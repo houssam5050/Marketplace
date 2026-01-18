@@ -155,7 +155,6 @@
                     <h4 class="mb-0">
                         Total: <span class="text-success">{{ $total }} MAD</span>
                     </h4>
-                    <button class="btn btn-pay btn-lg">Pay Now</button>
                 </div>
 
             @else
