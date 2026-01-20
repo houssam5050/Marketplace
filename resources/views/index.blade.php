@@ -245,12 +245,7 @@
             </svg>
         </a>
 
-        <a href="/favorits" class="nav-icons" title="Favorites" aria-label="Favorites">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2a5bd7" class="bi bi-heart"
-                viewBox="0 0 16 16">
-                <path
-                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-1.12 2.174.188 4.992 3.108 6.357L8 15l3.492-5.59c2.92-1.366 4.228-4.183 3.108-6.357C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 1c2.21 0 4 1.79 4 4 0 1.157-.634 2.144-1.574 2.722L8 12 5.574 7.722A3.993 3.993 0 0 1 4 5c0-2.21 1.79-4 4-4z" />
-            </svg>
+        
         </a>
         <a href="/cart" class="nav-icons" title="Cart / Payment" aria-label="Cart">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2a5bd7" class="bi bi-cart"

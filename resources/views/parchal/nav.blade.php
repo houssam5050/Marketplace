@@ -109,7 +109,6 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link active" href="/introduction">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/favorits">Favorites</a></li>
 
                 @guest
                     <li class="nav-item">
