@@ -16,10 +16,8 @@ Route::get('/PRoduct/index', [PRoductController::class, "index"])->name('product
 Route::get("/details/{id}", [PRoductController::class, "ProductId"]);
 
 
-Route::get('/introduction', function (){
-    return view('introduction');
-} );
-Route::get('/introduction', [IntroductionController::class, 'intro']);
+
+Route::get('/', [IntroductionController::class, 'intro']);
 
 
 Route::get('/test', [TestController::class, 'enter']);
@@ -56,4 +54,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/favorits', [FavoriteController::class, 'list'])->name('favorits.list');
 });
 
-Route::get('/PRoduct/index', [FavoriteController::class, 'index'])->name('home');
+Route::get('/PRoduct/index', [PRoductController::class, 'index'])
+    ->name('products.index');
