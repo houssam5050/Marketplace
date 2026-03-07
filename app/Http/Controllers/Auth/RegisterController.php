@@ -18,12 +18,13 @@ class RegisterController extends Controller
     public function store(Request $req)
     {
        
-        $row = DB::table('users')->where('name', $req->user)->first();
+        
+ $row = DB::table('users')->where('username', $req->username)->first();
         if(empty($row) == true)
         {
             DB::table('users')->insert([
                 
-                'name' => $req->user,
+                'username' => $req->username,
                 'email' =>$req->email,
                 'password' =>  Hash::make($req->password),
             ]);
@@ -32,5 +33,5 @@ class RegisterController extends Controller
         else
 
             echo 'Already exists';
-    }
+            }
 }
