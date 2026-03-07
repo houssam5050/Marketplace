@@ -8,7 +8,6 @@ use Auth;
 
 class CartController extends Controller
 {
-    // Show cart (payment page)
     public function index()
     {
         $pay = DB::table('payment')
@@ -25,12 +24,10 @@ class CartController extends Controller
         return view('product_cart', compact('pay'));
     }
 
-    // Add product to payment table
     public function add($id)
     {
         $userId = Auth::id();
 
-        // Prevent duplicate product for same user
         $exists = DB::table('payment')
             ->where('user_id', $userId)
             ->where('product_id', $id)
