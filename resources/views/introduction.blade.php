@@ -1,168 +1,800 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
- 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <title>Marketplace Intro</title>
-
-  <style>
-   
-    .carousel-item {
-      height: 60vh;
-    }
-
-    .carousel-item img {
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(70%);
-    }
-
- 
-    .carousel-caption {
-      bottom: 35%;
-    }
-
-   
-    .product-card {
-      transition: transform 0.3s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-8px);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Marketplace</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2a5bd7;
+            --secondary-color: #184ac9;
+            --accent-color: #ffb400;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --light-text: #6c757d;
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Hero Section with Carousel */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+        
+        .carousel-item {
+            height: 70vh;
+            min-height: 500px;
+        }
+        
+        .carousel-item img {
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        
+        .carousel-caption {
+            bottom: 35%;
+            text-align: left;
+            max-width: 600px;
+            margin-left: 5%;
+            animation: slideUp 1s ease-out;
+        }
+        
+        .carousel-caption h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+        
+        .carousel-caption p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 180, 0, 0.3);
+        }
+        
+        .hero-btn:hover {
+            background-color: #e6a200;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 180, 0, 0.4);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+            position: relative;
+        }
+        
+        .features-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark-text);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 15px auto 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 25px;
+            text-align: center;
+            height: 100%;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 32px;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+        }
+        
+        .feature-card p {
+            color: var(--light-text);
+            font-size: 1rem;
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+        }
+        
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .products-header h3 {
+            font-size: 2.2rem;
+            color: var(--dark-text);
+        }
+        
+        .view-all-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .view-all-btn i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .view-all-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(42, 91, 215, 0.3);
+        }
+        
+        .view-all-btn:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Product Cards */
+        .product-card {
+            border: none;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .product-image {
+            height: 220px;
+            width: 100%;
+            object-fit: contain;
+            background: #f8f8f8;
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .product-card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 55px;
+        }
+        
+        .product-description {
+            font-size: 0.95rem;
+            color: var(--light-text);
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+        
+        .btn-view {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .btn-view:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .btn-add {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .btn-add:hover {
+            background-color: #218838;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--light-text);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-cta-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cta-primary:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(42, 91, 215, 0.3);
+        }
+        
+        .btn-cta-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 16px 36px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cta-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .carousel-caption h1 {
+                font-size: 2.5rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .products-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-cta-primary, .btn-cta-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .carousel-caption h1 {
+                font-size: 2rem;
+            }
+            
+            .carousel-caption {
+                bottom: 25%;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="/PRoduct/index">Marketplace</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-<div id="carouselExampleRide" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-
-    <div class="carousel-item active">
-      <img src="https://litcommerce.com/blog/wp-content/uploads/2023/08/thumb-best-marketplaces-to-sell-on-.webp" class="d-block w-100">
-      <div class="carousel-caption">
-        <h1 class="fw-bold">Welcome to Marketplace</h1>
-        <p>Your trusted online marketplace</p>
-        <a href="#" class="btn btn-warning">Shop Now</a>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <img src="https://nintendoeverything.com/wp-content/uploads/sites/1/nggallery/gamestop-black-friday-2020/GS_BlackFriday_2020-page-012.jpg" class="d-block w-100">
-      <div class="carousel-caption">
-        <h1>Best Deals</h1>
-        <p>Save more with daily offers</p>
-      </div>
-    </div>
-
-    <div class="carousel-item">
-      <img src="https://cdn.wedevs.com/uploads/2016/11/Best-ways-to-sell-downloadable-products-on-a-marketplace.png" class="d-block w-100">
-      <div class="carousel-caption">
-        <h1>Sell Anything</h1>
-        <p>Join thousands of sellers worldwide</p>
-      </div>
-    </div>
-
-  </div>
-
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
-</div>
-
-
-<section class="py-5 bg-light">
-  <div class="container text-center">
-    <h2 class="fw-bold">Why Choose Marketplace?</h2>
-    <p class="text-muted">A simple and secure marketplace for everyone</p>
-  </div>
-</section>
-
-
-<section class="py-5">
-  <div class="container">
-    <h3 class="fw-bold text-center mb-4">Featured Products</h3>
-<!-- ================== card -->
-    <div class="row g-4">
-      <div class="col-md-3">
-        <div class="card product-card shadow-sm">
-          <div class="card-body text-center">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ5_vcV_suwoW4BnLV62MWpRpsUzD2GZKk4Q&s"
-            class="image">
-            <h5 class="card-title">XBOX series X</h5>
-            <p class="text-muted"> A short description that makes the product look appealing.</p>
-            <button class="btn btn-outline-primary">View</button>
-          </div>
+    <!-- Navbar Component -->
+    <x-navbar>
+    
+    <!-- Hero Section with Carousel -->
+    <section class="hero-section">
+        <div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         class="d-block w-100" alt="Marketplace Hero">
+                    <div class="carousel-caption">
+                        <h1>Welcome to Marketplace</h1>
+                        <p>Your trusted online marketplace for quality products. Discover amazing deals from verified sellers worldwide.</p>
+                        <a href="#products" class="hero-btn">Explore Products</a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         class="d-block w-100" alt="Best Deals">
+                    <div class="carousel-caption">
+                        <h1>Best Deals & Discounts</h1>
+                        <p>Save more with our exclusive daily offers and seasonal discounts. Quality products at unbeatable prices.</p>
+                        <a href="#products" class="hero-btn">View Deals</a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                         class="d-block w-100" alt="Sell Products">
+                    <div class="carousel-caption">
+                        <h1>Sell Your Products</h1>
+                        <p>Join thousands of successful sellers worldwide. Reach millions of customers with our easy-to-use platform.</p>
+                        <a href="{{ route('register') }}" class="hero-btn">Start Selling</a>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
         </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card product-card shadow-sm">
-          <div class="card-body text-center">
-            <img src="data:image/jpeg;base64,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"
-            class="image">
-            <h5 class="card-title">Iphone 13</h5>
-            <p class="text-muted"> A short description that makes the product look appealing.</p>
-            <button class="btn btn-outline-primary">View</button>
-          </div>
+    </section>
+    
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
+                <h2>Why Choose Marketplace?</h2>
+                <p>A secure, reliable, and user-friendly platform designed for both buyers and sellers</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Secure Payments</h4>
+                        <p>All transactions are protected with industry-leading encryption and secure payment gateways.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h4>Fast Delivery</h4>
+                        <p>Reliable shipping partners ensure your orders reach you quickly and in perfect condition.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>24/7 Support</h4>
+                        <p>Our customer support team is available round the clock to assist you with any queries.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card animate-on-scroll">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Quality Assured</h4>
+                        <p>All products go through a verification process to ensure they meet our quality standards.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card product-card shadow-sm">
-          <div class="card-body text-center">
-            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIQEBAQERAVFRAWFhAYFhUWEhUXFxUVFxUXFxUVFxYYHSggGRolHRcYITEiJSkrLi4uFx8zODMsOCgtLisBCgoKDg0OGBAQGzchHx0vMDcrMjcuNy4rNy03LS0rLTctNy0tLS0vLy0tLi0tKysrLSstLSsrKy4tLi0tLy0tK//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABwECBAUGAwj/xABJEAACAQICBgYECggEBgMAAAABAgADEQQhBQYSMUFRBxMiYXGBFDJCkRcjUlVicoKTodJTkpSxwdHT8DNzosIVJDRDsuEIg/H/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAgMEAQX/xAAuEQEAAgIBAwEHAQkAAAAAAAAAAQIDETEEEiFRBSIyQWGBkTMTI0JxocHR4fD/2gAMAwEAAhEDEQA/AJxiIgIiICInlisSlJGqVXVKai7MzBVA5kndA9YnF1ulDRocolR6pHFKZ2fJmsCM+F5ptY+kpjsrgVAHtVaqEnvCUwf9RNu474EmxIZw3STjUPaKVByamB7ilpI+rGs9PGqvZNOqV2tgm4Zb2LI3tAHI7iDvGYJ5tzccN/EROukREBERAREQETxxmKSijVKjBUUXLHcBIz1k6TKyVWpYeiqAWuagLPmL5qCApsRkbnnbdObc3G9JSiQvgukjHq6szU6iX7SPTC3H0XS2ye8hp2DdKWBVQzCsMhtDqwdk8Qe1n5TrruImk1e1twWP/wCmxCu9rlDdKgHMowBt32m7gIiICIiAiIgIiICIiBgad0vSwVCpiK7WpoPNifVVRxYnICQdrBpitpKp1uKOzSBvSw4PYQcCw9p+8+Vptuk3TpxWNNAH/l8KbW4NXPrE/V3d2fOR7jdMEtsINowMvF0Vp1abr6t2DDmCp/jY+U2GplTr8Syul1GQF7bQIZSO7Mrn3zksdiKxIDZEcBM3Q+l2olaoHbQ9oZi9947gefA+EjeN1mEL17qzEfN0GlcE9ErbNGsUY5Bkv2t25xnccCJ0erOJelQSsp7VN8QVF9xSmtUDwI6xDzFTuEuw+lKOKpbRF6dTNhlm3Ej9HXHubzBmsWqcPRxVAkHZ2nUj2kqUjT2h5mmfM8plta2tTzDz8mS817bR71ZhPWGrCoiOvqsqsPAi4nrNJqTX6zRuBbj6PQB8VQKfxBm7mx6ZERAREQEREDiNeccXrU8KDkvo7sO+tXFJG+yoqEfSKn2RIcx7M1eoRnepV2t5ObGwUcTe07vW/SQXTOKJPZp0cKT/APUeuA82dV+1NHoGktECs5+PfNSACyKeKKcusbMgnJRnxEzTbtvafww2vNMt7TG+Ih519GdTgqxqD40FS30fi3Ip/WzUn6wE45cS1WnskWYuoPOwsbe+b7WfWNXPotIAIpO3Y3G1e5XaObtfNmO8i3CcVUxLltpb7Nzbv75bjiYj3uZX4K2ivv8AMuuo4VF2WRilVTdXUlWVuYYZgyWejvXdsS3oWMI9LAJp1LADEIN5sMhUHEDfvHGQQNIVUsXXsnjNvhMcWCVKT7NWmwemw3q65iWL31BE1GqemxjsHRxIFiws6/JdcnHhcZdxE28BERAREQEREBMbSeK6mhWrHdTp1H/VUt/CZMhLpG6Uarmth8AEOHAenUdl2jWuCrinn2VFzZt53jK1wj/H4tztU73quzbTcSxPaYyuEwgpjLfxM1wxQq4hqqA7JYuF4rfPZ8pn47HKgyNyd0Dy0nilUqLXYfgOMxcQAGD+y1g3nuM11RixJJzMysGrNxGyudj4Gx8jYwN5oLFHD1DxovYOvdwYfSH4jKdHpNdnZPrABhce1ScHK/LM28RynCYXFsHCs21fdmDY8gRwO7xtO00TW66g1Mm5p2K96H+R/eJG1YnlG1ItylHof0iKmBNAntUHcd+w5LqfeWH2Z3cgbUHTHoWkE2jalV+LqchtHsN5NbyLSeZJIiIgIiICUdgASTYAEkngBvMrOJ6V9OejYI0VPxuIug5inb4xvcQv24ET6Q0h6Xi8TWz2a1UseZpKfi17sgPMDlGnca1JCFNq9QXJH/bTdlyOVhyA8JTQ1EAF2yVQST3DMznNNaQLM1Q+sxyHAfJHgAPwHORisb2jFIie5r61HZAQb2y8Bx/vvno1ZUKKR2cr+E8aO26klgSLEEkXG++7nllMNySSSc5JJ05YMOYMwApw7hl9RjYjlMXRuN2Oy3q/umZpOoGUAZ2zMCY+g3HlkxlG/Z2kqL4ttK34KklOfLOqGuuIwDKuFCcTWNRdoOL3CCxBHK/eeWf0TqdrPS0nhhXpdlgdmpTJu1NwLlSeIIIIPEHhmAG9iIgIiICIiByvShpNsNorFPTJDsFpqQbEdawRmB4EKWI8J8zmpw4CfTPSZoh8Xo2vTpKWqLsVFUb22GBYDmdm9hxNp8xuuyTAoabUz1tLP5ScxxIl1d0qLtqbHiJaMQRMXEgE7S5Nx5H+RgXohO4RVUqM8p0eoujq2kq/olLq0qbDPtPtbOypUH1Qc+0MpNWp/Rbh8G64jEN6TiQbqWW1OmeBRM8+8/hAic9GmJTRFXSVUMlZdiotC3aFAZvUe+YbcwHAJnmbDC0JjurenU9kgEj6D+sPL+An1FVphlZWAKsCCDuIIsQZ84a16sNo2p1V701ersHO/VFtpQe8Ky+4QL9NYWxJ4c+4yauj7TnpuBpuxvVT4upzLKBZvtLsnzMhrBv12GsfXp9k/V9g+7L7M3nRdpr0XHdQxtSxFkN9wqC/VnzzX7QnBN0RE6EREBIA160x6dpCoym9Kn8XT5bKk3bza58LSVukjTnoeAqFWtWq/FU7bwWB2mH1VufG0hXQmFuc8gOPAAQLtMVRSoLS3F+03ci7h5kf6TNfqjqu2lcemFJZaS03qVnXegIsgFxa5JQW5bXKeWOrnEVyQMiQAOSDJR5/zk39FurHoWHrVXA6/EVCxI4U07NJb8Ra7fbgfPOsurtfR2JfDYhbMM0YerVXg6Hl3cNxmvNI8p9bay6t4bSNHqcTSDrvVtzo3ykbgZDet/RrW0bh62JTEpVwtMA7LqRVAJCgC1wxuRnlAi2jTBaxNhxntUrF/iqWSD1nP9//ALMOrVNRrnsjlxmStcAbKiw5fx7zA9FphBZf/Z7zJF6ENLNT0l1N+xXpupHN6YNRD5AVB9qRvt3kkdCGhnq49cTsnq6AcluG26Mip42cny7xA+gYiICIiAiIgJFnSV0Y+kl8XgVArm5qUcgtU8WQ7lc8Qcj3G5MpxA+N8XhWR2purJUUkMrAhlPIg5gxg8BUrVFpUkapVbJUQFmPgB+/cJ9ZaZ1ZwWMIbE4SlVYZBnQFgOW1vt3TwqUcDonD1Kq0aVCkLX6umoZyTZVAUXZibADmYHOdE2oZ0XRerXscZWA2rG4pIMxTB4m+ZPO3K5kCRBpLpqalUKf8NNha23iAGIO4kKhHuJ8Zi/Dq3zcP2k/04E0ziOlDQnX4frFHaX+x/Ed5Kzjfh1b5uH7Sf6c88T03GojI2jhZgR/1P4j4vfA47QeJ6mtsseyew31W9VvI29xmXpWg1N7gkMCCCN4IORHnMbTSKTTxFMWpVlDgfJDZMh71cFfKbQP1+HVz669h+8jcfMW87wJw1R00Mbg6OI9oizjlUXJx7xcdxE3EgDVXXapolK4FHrkYq2wamxssMmYHZO8Wv9UTb/Do3zcP2k/04E0RIY+HRvm4ftJ/pyq9NVSqHRMCqMVazmuW2TawbZ6sXztlcQMDpQ00cXjzSQ3pYe9Mci9/jW94C/Y75pca/U4bZHr1Lr4IPXP4gecx9EYc1HuSSSd5zJN8yTMPTWJ66sQvqDsL9Vd58zf3zg33RtoU4nFKx9UEG/LfbzsC3lPoNECgACwAAA5AbhIH0RrouhmNBcKK1XZU1GNXY2GbtFLbDXsNi/Igza/De/zcv7Uf6U6JlmPpDBU8RSqUKqhqVRWR1PFWFiJEfw3v83L+1H+lKjpuf5uX9qP9KBHeveoWI0VVbaDPhCfi69srHctQjJX4Z5HhyHLCnPpfUrpFw2lXfCtS6rEbJPVswdKi+1stYXI4ggeec2z6iaLZ+sOjsNtXv/gqBfvUCx90CBNQdQcRpRg4vTwgNmrkZG29aQ9tuF9w43tY/R2gtD0cFQTD4dNmmvvYnezHix4mZ1OmFAVQAoAAAFgANwAG4S6AiIgIiICIiAiIgUJtId1u1g9PrhkN8JSJ6nlUaxVq/gRdV+iSfay6PpI1hvfR9FsyAcSw9lD6tEH5TjM8l+sDOBY8IGn1h0d1ybQ/xFvbvHETi7SSSJyesujdhutUdht/c3/uBoolYgdLq5VFbD1sI2bJtVqX1TYVkH+l/J5l6v4rYc03NlfsEncGHqN+Nvtd05fR+MahVp1k9ZDcX3Ebip7iCQe4zYaXejXJNJiitYhWuSp4o1t4HPKBstLoKTsSSQ1hsm1hlYgeM5d1sSORI9xtMiu7AKrVdu30ixy3Anl5zGgJsNHOFFuLE+4W/nMCXpfLOxBuD+/++6B2YcYfDeteo42FJttZ+s/kPxImDoOmqmpiKgvSoqXI4NbJE+05A8DNCKJLio9YngM2byuNw90z9I6RU0Uw9K+yDt1WPtuLhQPoKCfEtfgIGvrVmdmqObuzMzHmzG5PvlolBKiBWW1quyO/hLibZndMGo+0bwPXA4ypQq061JylVGDIw3hhx7xzHEEifUuoWtdPSmEWutlqjs1qd/UqAZ/ZO8HkfGfKc6PULWt9FYxa63ai1lr0x7dO+8D5a7x5j2jA+rInhgcWlenTrUnD03VWVhuZSLgie8BERAREQEREBNFrhrAMDQ2lAbEPdaKHcXtmzfQUZnyG8ibbH4xKFJ61VgtNFLMx4Afv8JDWl9JPi674mqCpYbNNCb9VSBuqcto+sx55ZhRAwWvmWYu7Es7t6zuc2Y24k8shuGQnkZ6mW7MDznniKC1FZGF1IsZkbMbMCO9IYM0ajU24bjzHAzHncaf0X11O6j4xble/ms4giBSIlYFZSIAgVEuEoBLoC0rErAAS6UEsrVNkd5/u8DyxNT2R5zwiICIiBKvQnrv6PUGjcQ1qFRj1DE/4dVjnTv8AJc7vpH6WU9T4wn0d0Ra7/wDEcP1Fdv8AnKAAY/pae5avjwbvz9oQJBiIgIiICIiBGOv+l2xGIbCgfEYdk2x+kr7C1Fv9FA6kfSP0ROXebrT236fpACrUp2rJkopEHaw1BgbVKbc/wmDUaqB2agfmHpUiSO7Z2BfdvnJnTkzqNsG0bMzqVZmNr0CfkmjURvcahv5T3Wm5NuopHwquv+wzPPWYYnUzphn2n01bdtran6xMf2avYjYm3OE54ZvsVlb/AMgs8zh140a6+VE/+NQn8JOOoxT/ABQtjrenni8flqys5HWnRWw3XKOyx7Q5Hn5yQGoUuLVR44esfxVCJ4YrA0XVlasmyRnthky+0BJxkpPEra5sduLR+UTWi02uP0SKVRk6+kQCbEOCCOBvMY4Qfpaf6wk97WRO+GIBK2mT6KP0qfrCPRh+lT9YQ6xxEyfRh+lT9aU6gfpU/WgeAEutPbql/Sp+tK9Uv6VP1hA8CbC53TCqPc3mZVw9RzsojMBxVGNzzyG6etHQGKf1cNV+6cfvEjN6xzKE5KRzMNZE3tLVDHNuwzebUx+9hM2lqBjW3oi/WqD/AGgyE58cc2hVPV4I5vH5crE7ROjvEe3UpL5uf9ol51DCAtUxaKo3nq7AeZaVT1mGPHcot7U6WJ13+fvLiJn6B0vVwWIpYqg1qtM3HJh7SNzVhkf5gTK0vh8HSBWhiHrVbjMIBTHPM+t5TUBu8+5f5TRW3dG4bMeSL17o/rGn15q9pZMZhcPikBC1UVwp3rcZqfA3HlNjOW6L1I0Po+4AJoq2X0iWH751MkmREQERECOtfcF1WMSsPUrpY8utpbvNqZ91Gc6TJF19wBrYKoyi9WjasgG8mnmyjvZNtPtSOSwIBBuDYg8wcwYFTYixAI5EXl1MFc0cj6LdpfxzHkbd08by4PK74qXjVo2py9Pjyxq9dtthdMsmTplzXtj3AbX4ec3mB0ph6gzCkcwQR7xOQWpKlVJuRZvlA2PvEy26PXwT9peff2ZFfOKftPmEhUsDh6m60vbV2md04LD42rT9V9sd/Zb3jI+4eM3eA1u2SqOdljuVrAnns52byJlU1iv6lPvDPNK4/GfF948w1evGrBZLoO2tyh581J5H94EjBx5fv8JP1fSFLEJsnIyKdd9C9U5rqOyx7duDHc3nuPfbnJ4MtaX7Yn3Z4WdJ1FMWT9nWd0tx9J9HJGWGXtPNp6D2lJaZUykCk6fUjQRxFUVWW9NCNnL1n/kN/jbvmj0XgWxFVKSbzvPyV4sf732k2at4WjhaSDIBQAB/E9/GY+pyx+nE63z/ACeZ1/URH7mJ1M8z6R/ttMLq4uyLnOe50LRX1rTU6b1zpUFu9RUXmzWv4DefKRtp7pUBuKCtUPymuie71j+EoiMc+MdNsla4beMOPu+vySpiK2Gp7hczkdPa84TD3Uuu18hO2/mBu87SHtK60YvE3FSsQh9hOwvnbM+ZM00tr0k2+KdfSF9fZ1r/AKkxEekf5dzpjpGq1LihTCD5T9pvJfVH4zkcdj6tdtqrUZz9I3A8BuHlMS8reaceDHj+GG/D0mHD8FdT6/NdeZGjsE+IrUsPT/xKrpTXxdgoPgL38piyS+gfQnX6RfEsLphkuOXW1LqvuXbPulrQn3RmCTD0aVCmLU6aIij6KqAP3TKiICIiAiIgDIaxmC9Gq18NwpOQn+Uw26VvBWC+KGTLI+6SMBsV8PigMqimhUy9pdqpRPh/ijxZYHJkwGlHll4HqGlwaeIMu2oHsHnAa14/rsQRvVBsjx9o+/8AdOu0rjOpovU4gZeJyEjgtcknfA22jdZMTh7BKpKj2X7Q8BfMeRnSYfXelWUpiaZW4IJHaQg5HvH4zg7yhMzZelx5OY1P0Yc/s7Bm8zGp9Y8S3mJCB3VHDoD2WB3rvHnY5988GM1Blk0RGo02VjURHLbkyl5qZSdSdrofT2FwVLauald82CD1R7KljkOZ35numDpXXrFVsqZFFfo9pv1j/ACcveWkzNHS4+6bT5mfVhr7Pw985LR3TPr/ANpfXqM5LOxZjvLEknzMwxymQTPCqLG/OadNsRrgiW3lbw6rEpeVgVE+luhXQfouiqTsLVMQTWb6rWFIfqBT4sZ89ataJbG4zDYRf+7UVT3JvqN5KGPlPr+hSCKqKLKoAA5ACwEC+IiAiIgIiICafW7RhxWCr0kHxuzt0r/paZD0/LaUA9xM3EQINSsKiJUX1WUML5GxF7Ec5S82OsGB9HxmKo7l2utT/LrEt7g4qL4KJrGMC68reee1KVKoUFjuAJPgIHM65Y27JRB3dpvE5ATmp7Y7EmrUeoeJPu4TwMBLSYJlsATKQZSAMpEpAoTKEyplhgJZUW4l0pA8QYlGFiZWAlbykEwJd/8Aj1oTrMTiccw7NJeqp/XqZuR3hQB9uT1OS6LNBeg6KwtNhao69bU57dXtWPeBsr9mdbAREQEREBERAREQOE6UMBlhsWPYY0an1Kttgnnaoqgf5hnCPJn07o0YrDV8OTbrEZQ3yWt2WHeDY+UhVKhZQWFnzDr8l1Oy6+TAjygJptaMXsUdgHN8vLjNvecTrDi+srtY9leyP4/jA1ssJlSZbASkEyhgDKRKQEoZQmUJgLy2JQwKy28Ey2BbV58pbPQzx7oF06Ho/wBB+n6SwmGIvTLh6nLq6fbYHxts/anOiTd/8ddBWGK0gwzNqFM24Cz1SPE7A+yYE1ASsRAREQEREBERAREQEiHXPAej4+uAOxWArpyu3ZrKPtAMf82S9OL6UdH7WHpYpR2qD9rn1NWyVPIN1bnupwIs0viuqpO/G1h4nITgC150eueK7SUQd3abx4TmoAxEpAoZSVMpAS28qZbAoTKSsoYC8pEtMAZSIMCl55vvvLyZawgUAO4C54AcTwE+u9RtBjAaPwuFt2kQbffUbtVD+sTPnPoj0H6bpXDKRenRJr1PCmRsg+LlR759VQEREBERAREQEREBERATyxWHWqj06ihqbqysp3MrCxB8jPWIEOaZ6E3qVXejpCyE5LVo7bKOALqw2vG0wfgMxHzhS+4f88nGIEHfAZiPnCl9w/54+AvEfOFL7hvzycYgQb8BeI+cKX3Dfnj4CsR84UvuG/PJyiBBh6CsR84UvuG/PHwEYj5wpfcN+eTnECC/gIr/ADhS+4b88fARX+cKX3Dfnk6RAgv4B6/zhS+4b88p8A9f5wpfcN+eTrECCvgGr/OFP7hvzx8Atf5wp/cN+eTrECCfgFr/ADhT+4b88DoErcdI0/2dvzydogch0eahUdD06gRzVr1NnrKrALcLuVVF9lcyd5Oe/dbr4iAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiB//9k="
-            class="image">
-            <h5 class="card-title">Airpods Gaming</h5>
-            <p class="text-muted"> A short description that makes the product look appealing.</p>
-            <button class="btn btn-outline-primary">View</button>
-          </div>
+    </section>
+    
+    <div class="container mt-5 mb-5">
+        <div class="text-center animate-on-scroll">
+            <a href="/PRoduct/index" class="btn view-all-btn" style="padding: 16px 40px; font-size: 1.2rem;">
+                <i class="fas fa-box-open me-2"></i> Browse All Products
+            </a>
+            <p class="mt-3 text-muted">Discover our complete catalog with thousands of amazing products</p>
         </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card product-card shadow-sm">
-          <div class="card-body text-center">
-            <img src="data:image/jpeg;base64,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"
-            class="image">
-            <h5 class="card-title">PS5</h5>
-            <p class="text-muted"> A short description that makes the product look appealing.</p>
-            <button class="btn btn-outline-primary">View</button>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <h3>Featured Products</h3>
+                <a href="/PRoduct/index" class="view-all-btn">
+                    View All Products <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="row g-4">
+                
+                @foreach ($products->take(12) as $p)
+                    @php
+                        $img = "";
+                        if (!empty($p->image)) {
+                            $img = 'http://localhost/tp_company/uploads/{{ $p->image }}' . $p->image;
+                        } else {
+                            // Fallback image if no product image exists
+                            $img = 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+                        }
+                    @endphp
+                    
+                    
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="product-card animate-on-scroll">
+                            <img src="{{ $img }}" class="product-image" alt="{{ $p->name }}">
+                            <div class="product-card-body">
+                                <h5 class="product-title">{{ $p->name }}</h5>
+                                <p class="product-description">
+                                    {{ Str::limit('High-quality product with excellent features and reliable performance. Perfect for everyday use.', 100) }}
+                                </p>
+                                <div class="product-actions">
+                                    <a href="/details/{{ $p->id }}" class="btn-view">View</a>
+                                    <form action="/cart/add/{{ $p->id }}" method="POST" class="d-inline w-100">
+                                        @csrf
+                                        <button type="submit" class="btn-add">Add to Cart</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                @endforeach
+            </div>
+            
+            @if($products->count() == 0)
+                <div class="text-center py-5">
+                    <div class="display-1 text-muted mb-4">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>No Products Available</h3>
+                    <p class="text-muted mb-4">Check back soon for amazing products!</p>
+                    <a href="{{ route('login') }}" class="btn btn-primary">Become a Seller</a>
+                </div>
+            @endif
+        </div>
+    </section>
+    
+    
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number">5K+</div>
+                        <div class="stat-label">Verified Sellers</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Products Listed</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item animate-on-scroll">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Customer Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2>Ready to Get Started?</h2>
+                <p>Join thousands of satisfied customers and sellers on our platform. Whether you're looking to buy quality products or sell to a global audience, we've got you covered.</p>
+                
+                <div class="cta-buttons">
+                    <a href="/PRoduct/index" class="btn-cta-primary">
+                        <i class="fas fa-shopping-cart me-2"></i> Start Shopping
+                    </a>
+                    
+                    @auth
+                        <a href="#" class="btn-cta-secondary">
+                            <i class="fas fa-tachometer-alt me-2"></i>Comming Soon
+                        </a>
+                    @else
+                        <a href="{{ route('register') }}" class="btn-cta-secondary">
+                            <i class="fas fa-user-plus me-2"></i> Create Account
+                        </a>
+                    @endauth
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   
+ 
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            const carousel = document.getElementById('mainCarousel');
+            if (carousel) {
+                const carouselInstance = new bootstrap.Carousel(carousel, {
+                    interval: 5000,
+                    wrap: true
+                });
+            }
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+</x-navbar>

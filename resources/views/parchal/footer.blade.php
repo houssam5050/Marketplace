@@ -14,15 +14,23 @@
     </style>
 </head>
 <body>
-    <footer>
-    <h4>MarketPlace</h4>
-    <p>All rights reserved © 2025</p>
-    <div>
-        <a href="#" style="color:#bbb; margin:0 10px;">Home</a>
-        <a href="#" style="color:#bbb; margin:0 10px;">About</a>
-        <a href="#" style="color:#bbb; margin:0 10px;">Contact</a>
-    </div>
-</footer>
+  <footer>
+        <h4>MarketPlace</h4>
+        <p>All rights reserved © 2025</p>
+        <div>
+            <a href="/" style="color:#bbb; margin:0 10px;">Home</a>
+
+        </div>
+        <br>
+        <div>
+            <p style="color:#bbb; margin:0 10px;">phone:</p>
+            <p style="color:#bbb; margin:0 10px;">+212 0613350256</p>
+            <p  style="color:#bbb; margin:0 10px;">email:</p>
+            <p style="color:#bbb; margin:0 10px;">hossamhamdan4545@gmail.com</p>
+
+
+        </div>
+    </footer>
 
 </body>
 </html>

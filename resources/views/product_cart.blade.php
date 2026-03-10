@@ -119,7 +119,6 @@
                         <div class="col-12">
                             <div class="cart-card d-flex justify-content-between align-items-center flex-wrap gap-3">
 
-                                <!-- Product Info -->
                                 <div class="d-flex align-items-center gap-3">
                                     <img src="http://localhost/tp_company/uploads/{{ $item->image }}" class="cart-img"
                                         alt="{{ $item->name }}">

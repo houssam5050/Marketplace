@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
 
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-     
         body {
             background: linear-gradient(135deg, #fafafa, #ffecec);
             font-family: 'Segoe UI', sans-serif;
@@ -26,7 +25,7 @@
             padding: 40px 30px;
             border-radius: 20px;
             box-shadow: 0px 10px 30px rgba(92, 0, 0, 0.2);
-            border-top: 6px solid #5c0000;
+            border-top: 6px solid #000a92;
             text-align: center;
             animation: slideFade 0.6s ease-in-out;
         }
@@ -43,20 +42,20 @@
             }
         }
 
-        
+
         .register-card h3 {
             color: #4a0000;
             font-weight: 700;
             margin-bottom: 30px;
         }
 
-        
+
         .form-label {
             font-weight: 600;
-            color: #4a0000;
+            color: #000000;
         }
 
-      
+
         .form-control {
             border-radius: 10px;
             border: 1px solid #cf9b9b;
@@ -64,7 +63,7 @@
         }
 
         .form-control:focus {
-            border-color: #5c0000;
+            border-color: #00085c;
             box-shadow: 0 0 8px rgba(92, 0, 0, 0.4);
         }
 
@@ -72,7 +71,8 @@
             width: 100%;
             padding: 12px;
             border-radius: 12px;
-            background: linear-gradient(45deg, #5c0000, #210000);
+            background: linear-gradient(45deg, rgb(25, 78, 252), rgb(0, 47, 188));
+
             color: white;
             font-weight: 600;
             font-size: 16px;
@@ -88,7 +88,7 @@
         .text-center a {
             display: inline-block;
             margin-top: 10px;
-            color: #5c0000;
+            color: #000000;
             font-weight: 600;
             text-decoration: none;
         }

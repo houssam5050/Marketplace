@@ -20,7 +20,7 @@ class PRoductController extends Controller
             $query->where('category', $request->category);
         }
 
-        $products = $query->withQueryString()->paginate(12);
+        $products = $query->paginate(12)->withQueryString();
 
         $categories = DB::table('products')
             ->select('category')
@@ -30,7 +30,7 @@ class PRoductController extends Controller
 
         $selectedCategory = $request->category;
 
-        $favorits = collect();
+        $favorits = collect(); 
 
         if (Auth::check()) {
             $favorits = DB::table('favorits')
