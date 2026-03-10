@@ -215,13 +215,59 @@
         .container {
             margin-top: 30px;
         }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 10%;
+            text-align: center;
+        }
+
+        .categories-bar {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px 18px;
+            background: #f9fafc;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-btn {
+            padding: 8px 22px;
+            border-radius: 30px;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, #ffffff, #f1f3f8);
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            text-decoration: none;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-btn:hover {
+            background: linear-gradient(135deg, #2a5bd7, #184ac9);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(42, 91, 215, 0.35);
+        }
+
+        .category-btn.active {
+            background: linear-gradient(135deg, #2a5bd7, #184ac9);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(42, 91, 215, 0.45);
+        }
     </style>
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg d-flex">
-        <a class="navbar-brand" href="/PRoduct/index">MarketPlace</a>
+        <a class="navbar-brand" href="/">MarketPlace</a>
 
         <form action="/PRoduct/index" method="GET" class="position-relative ms-4 flex-grow-1" role="search">
 
@@ -237,7 +283,7 @@
         </form>
 
 
-        <a href="/introduction" class="nav-icons" title="Home" aria-label="Home">
+        <a href="/" class="nav-icons" title="Home" aria-label="Home">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2a5bd7" class="bi bi-house"
                 viewBox="0 0 16 16">
                 <path
@@ -245,7 +291,7 @@
             </svg>
         </a>
 
-        
+
         </a>
         <a href="/cart" class="nav-icons" title="Cart / Payment" aria-label="Cart">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#2a5bd7" class="bi bi-cart"
@@ -265,7 +311,7 @@
         @endguest
 
         @auth
-            <span class="user-email ms-3">{{ Auth::user()->email }}</span>
+            <span class="user-email ms-3">{{ Auth::user()->username }}</span>
             <form action="{{ route('logout') }}" method="POST" class="ms-3">
                 @csrf
                 <button type="submit" class="btn-logout">Logout</button>
@@ -278,19 +324,23 @@
         </div>
     @endif
 
-    <div class="categories-bar container">
-        <button class="category-btn active">All</button>
-        <button class="category-btn">Electronics</button>
-        <button class="category-btn">Furniture</button>
-        <button class="category-btn">Accessories</button>
-        <button class="category-btn">Home & Kitchen</button>
-        <button class="category-btn">Sports</button>
 
-        <select class="form-select ms-auto" style="max-width: 140px; border-radius: 25px; border: 1.8px solid #ced4da;">
-            <option selected>Featured</option>
-            <option>Newest</option>
-            <option>Popular</option>
-        </select>
+    <div class="categories-bar container">
+        <a href="{{ route('products.index') }}" class="category-btn {{ empty($selectedCategory) ? 'active' : '' }}">
+            All
+        </a>
+
+        @foreach ($categories as $cat)
+            <a href="{{ route('products.index', ['category' => $cat->category]) }}"
+                class="category-btn {{ $selectedCategory === $cat->category ? 'active' : '' }}">
+                {{ ucfirst($cat->category) }}
+            </a>
+        @endforeach
+    </div>
+
+
+
+
     </div>
 
     @if(Auth::check() && $favorits->count() > 0)
@@ -301,7 +351,8 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="card h-100">
                             <a href="#" class="heart-btn favorited" data-id="{{ $fav->id }}">&#9825;</a>
-                            <img src="http://localhost/tp_company/uploads/{{ $fav->image }}" class="card-img-top">
+                            <img src="https://hamdan-houssam.idsmobile.com/backoffice/uploads/{{ $fav->image }}"
+                                class="card-img-top">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $fav->name }}</h5>
                                 <p class="card-text">Short description</p>
@@ -317,33 +368,34 @@
         <h3 class="section-title">Products</h3>
         <div class="row g-3">
             @foreach ($products as $p)
-                            @php
-                                $img = "";
-                                if (!empty($p->image)) {
-                                    $img = 'http://localhost/tp_company/uploads/' . $p->image;
-                                } else {
-                                    $img = 'data:image/png;base64,...'; 
-                                }
-                            @endphp
+                @php
+                    $img = "";
+                    if (!empty($p->image)) {
+                        $img = 'http://localhost/tp_company/uploads/{{ $fav->image }}' . $p->image;
+                    } else {
+                        $img = 'data:image/png;base64,...';
+                    }
+                @endphp
 
-                            <div class="col-md-3 col-sm-6">
-                                <div class="card h-100">
-                                    <a href="#" class="heart-btn {{ $favorits->contains('id', $p->id) ? 'favorited' : '' }}"
-                                        data-id="{{ $p->id }}">&#9825;</a>
-                                    <img src="{{ $img}}" class="card-img-top" alt="{{ $p->name }}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $p->name }}</h5>
-                                        <p class="card-text">Short description that's make product very nice and make the costumer want to buy it</p>
-                                        <div class="d-flex gap-2">
-                                            <form action="/cart/add/{{ $p->id }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="btn btn-primary">Add</button>
-                                            </form>
-                                            <a href="/details/{{ $p->id }}" class="btn btn-primary">Show</a>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="card h-100">
+                        <a href="#" class="heart-btn {{ $favorits->contains('id', $p->id) ? 'favorited' : '' }}"
+                            data-id="{{ $p->id }}">&#9825;</a>
+                        <img src="{{ $img}}" class="card-img-top" alt="{{ $p->name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $p->name }}</h5>
+                            <p class="card-text">Short description that's make product very nice and make the costumer want
+                                to buy it</p>
+                            <div class="d-flex gap-2">
+                                <form action="/cart/add/{{ $p->id }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+                                <a href="/details/{{ $p->id }}" class="btn btn-primary">View</a>
                             </div>
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </div>
 
@@ -351,6 +403,23 @@
             {{ $products->links() }}
         </div>
     </div>
+    <footer>
+        <h4>MarketPlace</h4>
+        <p>All rights reserved © 2025</p>
+        <div>
+            <a href="/" style="color:#bbb; margin:0 10px;">Home</a>
+
+        </div>
+        <br>
+        <div>
+            <p style="color:#bbb; margin:0 10px;">phone:</p>
+            <p style="color:#bbb; margin:0 10px;">+212 0613350256</p>
+            <p  style="color:#bbb; margin:0 10px;">email:</p>
+            <p style="color:#bbb; margin:0 10px;">hossamhamdan4545@gmail.com</p>
+
+
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
