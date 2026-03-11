@@ -342,7 +342,7 @@
 
 
     </div>
-
+//auth
     @if(Auth::check() && $favorits->count() > 0)
         <div class="container mt-4">
             <h3 class="section-title">Your Favorites</h3>
